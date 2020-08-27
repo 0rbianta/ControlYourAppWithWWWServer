@@ -14,7 +14,7 @@ import org.jsoup.nodes.Document;
 public class MainActivity extends AppCompatActivity {
 
     private EditText output;
-    private String data, requestedText="hello world!", link="";
+    private String data, requestedText="hello world!", link="https://raw.githubusercontent.com/0rbianta/ControlYourAppWithWWWServer/master/MY_SERVER_DATA.dat";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
