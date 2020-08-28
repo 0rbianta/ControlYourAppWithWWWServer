@@ -28,13 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
         new getCommand().execute();
 
-        if(data.contains("hello world!")){
-            // If the server contains the data we want, it will run this code.
-            Toast toast = Toast.makeText(getApplicationContext(),"Data contains "+requestedText, Toast.LENGTH_SHORT);toast.show();
-
-        }
-
-
     }
 
     public class getCommand extends AsyncTask<Void,Void,Void>{
@@ -46,10 +39,26 @@ public class MainActivity extends AppCompatActivity {
 
                 data=site.toString(); // Now, we pick data from the WWW Server.
 
-                output.setText(data); // Set data to output.
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        output.setText(data); // Set data to output.
+                    }
+                });
+
+                if (data.contains(requestedText)) {
+                    // If the server contains the data we want, it will run this code.
+                    System.out.println("Data contains "+requestedText);
+                }
 
             }catch(Exception e){
-                output.setText("Error. Do you have internet?"); // Error output.
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        output.setText("Error. Did you connect internet?"); // Set data to output.
+                    }
+                });
+
                 e.printStackTrace();
             }
 
